@@ -4,16 +4,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.blogApp.entity.User;
 import com.blogApp.exceptions.ResourceNotFoundException;
 import com.blogApp.payloads.UserDto;
 import com.blogApp.repository.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserService userService;
+//	@Autowired
+//	private UserService userService;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -32,7 +34,8 @@ public class UserServiceImpl implements UserService {
 		User user = this.userRepository.findById(userId)
 				    .orElseThrow(()-> new ResourceNotFoundException("User", "userId", userId));
 		
-		user.setUserName(userDto.getUserName());
+		user.setFirstName(userDto.getFirstName());
+		user.setLastName(userDto.getLastName());
 		user.setEmail(userDto.getEmail());
 		user.setPassword(userDto.getPassword());
 		user.setAbout(userDto.getAbout());
@@ -71,7 +74,8 @@ public class UserServiceImpl implements UserService {
 	public UserDto userToUserDto(User user) {
 		UserDto userDto = new UserDto();
 		userDto.setUserId(user.getUserId());
-		userDto.setUserName(user.getUserName());
+		userDto.setFirstName(user.getFirstName());
+		userDto.setLastName(user.getLastName());
 		userDto.setEmail(user.getEmail());
 		userDto.setPassword(user.getPassword());
 		userDto.setAbout(user.getAbout());
@@ -82,7 +86,8 @@ public class UserServiceImpl implements UserService {
 	public User userDtoToUser(UserDto userDto) {
 		User user = new User();
 		user.setUserId(userDto.getUserId());
-		user.setUserName(userDto.getUserName());
+		user.setFirstName(userDto.getFirstName());
+		user.setLastName(userDto.getLastName());
 		user.setEmail(userDto.getEmail());
 		user.setPassword(userDto.getPassword());
 		user.setAbout(userDto.getAbout());
