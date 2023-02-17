@@ -40,8 +40,9 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(userDto.getPassword());
 		user.setAbout(userDto.getAbout());
 		
-		UserDto updatedUser = this.userToUserDto(user);
-		return updatedUser;
+		User updatedUser = this.userRepository.save(user);
+		UserDto updatedUserDto = this.userToUserDto(updatedUser);
+		return updatedUserDto;
 	}
 
 	// Retrieve user by userId
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService {
 		return this.userToUserDto(user);
 	}
 
-	// Retrieving all users
+	// Retrieve all users
 	@Override
 	public List<UserDto> getAllUsers() {
 		List<User> users = this.userRepository.findAll();
