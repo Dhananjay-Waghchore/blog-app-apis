@@ -3,6 +3,7 @@ package com.blogApp.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +14,12 @@ import com.blogApp.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-//	@Autowired
-//	private UserService userService;
 	
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	// Creating User
 	@Override
@@ -73,26 +74,36 @@ public class UserServiceImpl implements UserService {
 	
 	// Converting User to UserDto
 	public UserDto userToUserDto(User user) {
-		UserDto userDto = new UserDto();
-		userDto.setUserId(user.getUserId());
-		userDto.setFirstName(user.getFirstName());
-		userDto.setLastName(user.getLastName());
-		userDto.setEmail(user.getEmail());
-		userDto.setPassword(user.getPassword());
-		userDto.setAbout(user.getAbout());
-		return userDto;	
+//		UserDto userDto = new UserDto();
+//		userDto.setUserId(user.getUserId());
+//		userDto.setFirstName(user.getFirstName());
+//		userDto.setLastName(user.getLastName());
+//		userDto.setEmail(user.getEmail());
+//		userDto.setPassword(user.getPassword());
+//		userDto.setAbout(user.getAbout());
+//		return userDto;	
+		
+		// Using Model Mapper for converting object
+		UserDto userDto = this.modelMapper.map(user, UserDto.class);
+		return userDto;
+		
 	}
 	
 	// Converting UserDto to User
 	public User userDtoToUser(UserDto userDto) {
-		User user = new User();
-		user.setUserId(userDto.getUserId());
-		user.setFirstName(userDto.getFirstName());
-		user.setLastName(userDto.getLastName());
-		user.setEmail(userDto.getEmail());
-		user.setPassword(userDto.getPassword());
-		user.setAbout(userDto.getAbout());
-		return user;	
+//		User user = new User();
+//		user.setUserId(userDto.getUserId());
+//		user.setFirstName(userDto.getFirstName());
+//		user.setLastName(userDto.getLastName());
+//		user.setEmail(userDto.getEmail());
+//		user.setPassword(userDto.getPassword());
+//		user.setAbout(userDto.getAbout());
+//		return user;	
+		
+		//Using ModelMApper for converting object
+		User user = this.modelMapper.map(userDto, User.class);
+		return user;
+		
 	}
 	
 	
