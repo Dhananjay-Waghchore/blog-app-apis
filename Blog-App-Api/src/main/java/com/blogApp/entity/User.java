@@ -15,10 +15,15 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
+	
 	private String firstName;
+	
 	private String lastName;
+	
 	private String email;
+	
 	private String password;
+	
 	private String about;
 
 }
