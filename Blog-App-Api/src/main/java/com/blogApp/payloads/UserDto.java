@@ -10,8 +10,6 @@ import lombok.Data;
 
 @Data
 public class UserDto {
-
-	private int userId;
 	
 	@NotNull
 	@Size(min = 4, message = "FirstName must be of minimum 4 charecters")
