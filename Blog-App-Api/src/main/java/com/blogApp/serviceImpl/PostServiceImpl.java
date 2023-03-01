@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -83,9 +84,9 @@ public class PostServiceImpl implements PostService {
 
 	// Get all posts
 	@Override
-	public PostResponse getAllPost(Integer pageNumber, Integer pageSize) {
+	public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy) {
 
-		Pageable pegination = PageRequest.of(pageNumber, pageSize);
+		Pageable pegination = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
 		Page<Post> pagePost = this.postRepository.findAll(pegination);
 		List<Post> allPosts = pagePost.getContent();
 
