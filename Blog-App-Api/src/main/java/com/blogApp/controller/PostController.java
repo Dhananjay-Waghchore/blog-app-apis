@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blogApp.config.AppConstants;
 import com.blogApp.payloads.ApiResponse;
 import com.blogApp.payloads.PostDto;
 import com.blogApp.payloads.PostResponse;
@@ -54,10 +55,10 @@ public class PostController {
 	// Get all posts
 	@GetMapping("/")
 	public ResponseEntity<PostResponse> getAllPost(
-			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "2", required = false) Integer pageSize,
-			@RequestParam(value = "sortBy", defaultValue = "postId", required = false) String sortBy) {
-		 PostResponse allPost = this.postService.getAllPost(pageNumber, pageSize,sortBy);
+			@RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+			@RequestParam(value = "sortBy", defaultValue = AppConstants.SORT_BY, required = false) String sortBy) {
+		PostResponse allPost = this.postService.getAllPost(pageNumber, pageSize, sortBy);
 		return new ResponseEntity<PostResponse>(allPost, HttpStatus.OK);
 	}
 
@@ -73,6 +74,13 @@ public class PostController {
 	public ResponseEntity<List<PostDto>> getByUser(@PathVariable Integer userId) {
 		List<PostDto> postDto = this.postService.getAllPostsByUser(userId);
 		return new ResponseEntity<List<PostDto>>(postDto, HttpStatus.OK);
+	}
+
+	// Search by title post API
+	@GetMapping("/posts/search/{keyWord}")
+	public ResponseEntity<List<PostDto>> searchByTitle(@PathVariable String keyWord) {
+		List<PostDto> searchPosts = this.postService.searchPosts(keyWord);
+		return new ResponseEntity<List<PostDto>>(searchPosts, HttpStatus.OK);
 	}
 
 	// Delete post API

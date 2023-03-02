@@ -22,26 +22,23 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int postId;
-	
-	@Column(name = "title")
+
 	private String postTitle;
-	
+
 	@Column(name = "content")
 	private String postContent;
-	
+
 	private String postImage;
-	
+
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private Date postDate;
-	
+
 	@ManyToOne
 	private Category category;
-	
+
 	@ManyToOne
 	private User user;
-	
-	
-	
-	
+
+	private String title;
 
 }

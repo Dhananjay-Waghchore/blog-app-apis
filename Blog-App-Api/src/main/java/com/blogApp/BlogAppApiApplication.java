@@ -17,4 +17,4 @@ public class BlogAppApiApplication {
 		return new ModelMapper();
 	}
 	
-}
+} 

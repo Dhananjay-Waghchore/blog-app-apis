@@ -130,8 +130,9 @@ public class PostServiceImpl implements PostService {
 	// Search posts
 	@Override
 	public List<PostDto> searchPosts(String keyWord) {
-
-		return null;
+		List<Post> searchedPost = this.postRepository.findByTitleContaining(keyWord);
+		List<PostDto> searchedPostDto = searchedPost.stream().map((post)-> this.postToPostDto(post)).collect(Collectors.toList());
+		return searchedPostDto;
 	}
 
 	// Delete post
