@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Blog-App-Api/Blog-App-Api.iml" filepath="$PROJECT_DIR$/Blog-App-Api/Blog-App-Api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/blog-app-apis.iml" filepath="$PROJECT_DIR$/.idea/blog-app-apis.iml" />
+    </modules>
+  </component>
+</project>
